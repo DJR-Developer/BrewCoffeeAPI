@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Daniel Ryan\\source\\repos\\ReadyTechAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{716F582F-AB44-4B16-AF51-6E590FD7D16C}|BrewCoffeeAPI\\CoffeeAPI.csproj|c:\\users\\daniel ryan\\source\\repos\\readytechapi\\brewcoffeeapi\\controllers\\brewcoffeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{716F582F-AB44-4B16-AF51-6E590FD7D16C}|BrewCoffeeAPI\\CoffeeAPI.csproj|solutionrelative:brewcoffeeapi\\controllers\\brewcoffeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A264751-389C-0ABB-B462-A299DAD36B5F}|BrewCoffeeAPITests\\CoffeeAPIUnitTests.csproj|c:\\users\\daniel ryan\\source\\repos\\readytechapi\\brewcoffeeapitests\\brewcoffeecontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A264751-389C-0ABB-B462-A299DAD36B5F}|BrewCoffeeAPITests\\CoffeeAPIUnitTests.csproj|solutionrelative:brewcoffeeapitests\\brewcoffeecontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BrewCoffeeController.cs",
+              "DocumentMoniker": "C:\\Users\\Daniel Ryan\\source\\repos\\ReadyTechAPI\\BrewCoffeeAPI\\Controllers\\BrewCoffeeController.cs",
+              "RelativeDocumentMoniker": "BrewCoffeeAPI\\Controllers\\BrewCoffeeController.cs",
+              "ToolTip": "C:\\Users\\Daniel Ryan\\source\\repos\\ReadyTechAPI\\BrewCoffeeAPI\\Controllers\\BrewCoffeeController.cs",
+              "RelativeToolTip": "BrewCoffeeAPI\\Controllers\\BrewCoffeeController.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T04:49:32.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BrewCoffeeControllerTests.cs",
+              "DocumentMoniker": "C:\\Users\\Daniel Ryan\\source\\repos\\ReadyTechAPI\\BrewCoffeeAPITests\\BrewCoffeeControllerTests.cs",
+              "RelativeDocumentMoniker": "BrewCoffeeAPITests\\BrewCoffeeControllerTests.cs",
+              "ToolTip": "C:\\Users\\Daniel Ryan\\source\\repos\\ReadyTechAPI\\BrewCoffeeAPITests\\BrewCoffeeControllerTests.cs",
+              "RelativeToolTip": "BrewCoffeeAPITests\\BrewCoffeeControllerTests.cs",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAYwLYAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T04:42:49.286Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

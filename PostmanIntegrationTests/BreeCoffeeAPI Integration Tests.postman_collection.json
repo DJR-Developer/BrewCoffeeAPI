@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "7fddd520-71ac-4f88-9ff5-d8cfc90f770a",
+		"name": "BreeCoffeeAPI Integration Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2654777"
+	},
+	"item": [
+		{
+			"name": "Initialization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Set vars for Valid Brew Coffee Status Code",
+							"pm.collectionVariables.set(\"totalRuns\", 1);",
+							"pm.collectionVariables.set(\"total200Results\", 0);",
+							"pm.collectionVariables.set(\"total503Results\", 0);",
+							"",
+							"// Set vars for Valid Brew Coffee 200 Response",
+							"pm.collectionVariables.set(\"validResponseRun\", false);",
+							"",
+							"// Begin the run!",
+							"pm.execution.setNextRequest(\"Valid Brew Coffee Status Code\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "postman-echo.com/get",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Brew Coffee Status Code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let totalRuns = parseInt(pm.collectionVariables.get(\"totalRuns\"));",
+							"let total200Results = parseInt(pm.collectionVariables.get(\"total200Results\"));",
+							"let total503Results = parseInt(pm.collectionVariables.get(\"total503Results\"));",
+							"",
+							"// Track status codes",
+							"if (pm.response.code === 200) {",
+							"    total200Results++;",
+							"} else if (pm.response.code === 503) {",
+							"    total503Results++;",
+							"} else {",
+							"    pm.test(\"Unexpected status code\", function () {",
+							"        pm.expect.fail(`Received unexpected status code: ${pm.response.code}`);",
+							"    });",
+							"}",
+							"",
+							"totalRuns++;",
+							"pm.collectionVariables.set(\"totalRuns\", totalRuns);",
+							"pm.collectionVariables.set(\"total200Results\", total200Results);",
+							"pm.collectionVariables.set(\"total503Results\", total503Results);",
+							"",
+							"if (totalRuns <= 5) {",
+							"    pm.execution.setNextRequest(\"Valid Brew Coffee Status Code\");",
+							"} else {",
+							"    pm.execution.setNextRequest(\"Validate Brew Coffee Status Code Results\");",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/brew-coffee",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"brew-coffee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate Brew Coffee Status Code Results",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let total200Results = parseInt(pm.collectionVariables.get(\"total200Results\"));",
+							"let total503Results = parseInt(pm.collectionVariables.get(\"total503Results\"));",
+							"",
+							"pm.test(\"Exactly 4 200 responses\", function () {",
+							"    pm.expect(total200Results).to.eql(4);",
+							"});",
+							"",
+							"pm.test(\"Exactly 1 503 Response\", function () {",
+							"    pm.expect(total503Results).to.eql(1);",
+							"});",
+							"",
+							"pm.execution.setNextRequest(\"Valid Brew Coffee 200 Response\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "postman-echo.com/get",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Brew Coffee 200 Response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let validResponseRun = pm.collectionVariables.get(\"validResponseRun\");\r",
+							"\r",
+							"if (pm.response.code === 200) {\r",
+							"    const jsonData = pm.response.json();\r",
+							"\r",
+							"    validResponseRun = true;\r",
+							"\r",
+							"    pm.test(\"200 Response Message is valid\", function () {\r",
+							"        pm.expect(jsonData).to.have.property(\"message\", \"Your piping hot coffee is ready\");\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"200 Response Prepared field is valid ISO 8601 Date\", function () {\r",
+							"        const moment = require('moment');\r",
+							"\r",
+							"        pm.expect(jsonData).to.have.property(\"prepared\");\r",
+							"      \r",
+							"        console.log(jsonData.prepared);\r",
+							"\r",
+							"        const isValid = moment(jsonData.prepared, 'YYYY-MM-DDTHH:mm:ssZ', true).isValid(); //true = strict mode\r",
+							"        pm.expect(isValid).to.be.true; // Assert that the date is valid\r",
+							"    });    \r",
+							"}\r",
+							"\r",
+							"if (validResponseRun == false) {\r",
+							"    pm.execution.setNextRequest(\"Valid Brew Coffee 200 Response\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/brew-coffee",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"brew-coffee"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "runCount",
+			"value": ""
+		},
+		{
+			"key": "successCount",
+			"value": ""
+		},
+		{
+			"key": "failCount",
+			"value": ""
+		},
+		{
+			"key": "totalRuns",
+			"value": ""
+		},
+		{
+			"key": "total200Results",
+			"value": ""
+		},
+		{
+			"key": "total503Results",
+			"value": ""
+		},
+		{
+			"key": "validResponseRun",
+			"value": ""
+		},
+		{
+			"key": "valid200Message",
+			"value": ""
+		},
+		{
+			"key": "valid200Prepared",
+			"value": ""
+		}
+	]
+}
